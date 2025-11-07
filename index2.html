@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>尼克与朱迪 - 疯狂动物城最佳搭档</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a5acd, #836fff);
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(to right, #4b0082, #6a0dad);
+            color: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .character-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .character-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 500px;
+            transition: transform 0.3s ease;
+        }
+        
+        .character-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .character-header {
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .nick-header {
+            background: linear-gradient(to right, #ff8c00, #ffa500);
+        }
+        
+        .judy-header {
+            background: linear-gradient(to right, #9370db, #8a2be2);
+        }
+        
+        .character-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .character-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .nick-img {
+            background: linear-gradient(to right, #ff8c00, #ffa500);
+        }
+        
+        .judy-img {
+            background: linear-gradient(to right, #9370db, #8a2be2);
+        }
+        
+        .character-body {
+            padding: 25px;
+        }
+        
+        .character-body h3 {
+            color: #4b0082;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+        
+        .character-body p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .quote {
+            background: #f9f9f9;
+            border-left: 4px solid #6a5acd;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        
+        .traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .trait {
+            background: #e6e6fa;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #4b0082;
+        }
+        
+        .relationship-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .relationship-section h2 {
+            text-align: center;
+            color: #4b0082;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: #6a5acd;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background: #f0f8ff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-content h4 {
+            margin-bottom: 10px;
+            color: #4b0082;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #6a5acd;
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        .gallery-section {
+            margin-bottom: 40px;
+        }
+        
+        .gallery-section h2 {
+            text-align: center;
+            color: white;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            background: #4b0082;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .share-section {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .share-section h2 {
+            color: #4b0082;
+            margin-bottom: 20px;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            background: #6a5acd;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .share-btn:hover {
+            background: #4b0082;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .character-card {
+                max-width: 100%;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 20px;
+            }
+            
+            .timeline-item:nth-child(odd)::after,
+            .timeline-item:nth-child(even)::after {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>尼克与朱迪</h1>
+            <p class="subtitle">《疯狂动物城》中最令人难忘的搭档 - 从对立到携手，打破偏见的完美组合</p>
+        </header>
+        
+        <section class="character-section">
+            <div class="character-card">
+                <div class="character-img nick-img">
+    <img src="2.jpg" alt="尼克·王尔德">
+     </div>
+                    <h2>尼克·王尔德</h2>
+                    <p>狡猾又善良的赤狐</p>
+                </div>
+                <div class="character-body">
+                    <h3>角色介绍</h3>
+                    <p>尼克·王尔德是一只聪明机智的赤狐，表面上是个玩世不恭、靠小聪明谋生的街头小贩，实际上内心善良，有着不为人知的过去。</p>
+                    
+                    <div class="quote">
+                        "在动物城，任何人都能成为任何想成为的人。"
+                    </div>
+                    
+                    <h3>性格特点</h3>
+                    <div class="traits">
+                        <span class="trait">机智聪明</span>
+                        <span class="trait">幽默风趣</span>
+                        <span class="trait">外表玩世不恭</span>
+                        <span class="trait">内心善良</span>
+                        <span class="trait">重情重义</span>
+                    </div>
+                    
+                    <h3>经典台词</h3>
+                    <p>"嘿，胡萝卜，你的耳朵能接收卫星信号吗？"</p>
+                    <p>"如果整个世界都不看好你，那不如就做个大家眼中的混蛋。"</p>
+                </div>
+            </div>
+            
+            <div class="character-card">
+                <div class="character-header judy-header">
+                    <div class="character-img judy-img">
+    <img src="3.jpg" alt="朱迪·霍普斯">
+</div>
+                    <h2>朱迪·霍普斯</h2>
+                    <p>勇敢坚毅的兔子警官</p>
+                </div>
+                <div class="character-body">
+                    <h3>角色介绍</h3>
+                    <p>朱迪·霍普斯是动物城第一位兔子警官，她乐观、坚毅，不因自己的体型小而自卑，始终坚持自己的梦想，努力打破人们对兔子的偏见。</p>
+                    
+                    <div class="quote">
+                        "生活总会有点不顺意，我们都会犯错。天性如何并不重要，重要的是你开始改变。"
+                    </div>
+                    
+                    <h3>性格特点</h3>
+                    <div class="traits">
+                        <span class="trait">乐观积极</span>
+                        <span class="trait">坚毅勇敢</span>
+                        <span class="trait">富有正义感</span>
+                        <span class="trait">永不放弃</span>
+                        <span class="trait">善良体贴</span>
+                    </div>
+                    
+                    <h3>经典台词</h3>
+                    <p>"在动物城，每个动物都有无限可能。"</p>
+                    <p>"我不会放弃，永远不会！我要让世界变得更美好！"</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="relationship-section">
+            <h2>关系发展时间线</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>初次相遇</h4>
+                        <p>朱迪在追捕小偷时遇见了正在行骗的尼克，两人初次见面并不愉快，尼克还戏弄了朱迪。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>被迫合作</h4>
+                        <p>朱迪以抓住尼克逃税的把柄为条件，强迫他帮助自己调查动物失踪案，开始了他们的合作。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>逐渐了解</h4>
+                        <p>在调查过程中，朱迪逐渐了解到尼克童年时因身为狐狸而遭受偏见的经历，对他产生了同情。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>产生裂痕</h4>
+                        <p>朱迪在破案发布会上无意中伤害了尼克，认为狐狸天生狡猾，导致两人关系出现裂痕。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>和解与成长</h4>
+                        <p>朱迪认识到自己的错误，向尼克道歉，两人真正和解，并成为彼此信任的搭档。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>最佳搭档</h4>
+                        <p>尼克最终也实现了成为警察的梦想，与朱迪一起在动物城警局工作，成为最默契的搭档。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="gallery-section">
+            <h2>经典时刻</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1578301978693-85fa6fd8e7d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Zm94JTIwYW5kJTIwcmFiYml0fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="尼克和朱迪">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1551313153-84d47db7e68a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZveCUyMGFuZCUyMHJhYmJpdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="经典时刻">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1551313153-84d47db7e68a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZveCUyMGFuZCUyMHJhYmJpdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="搭档合影">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1578301978693-85fa6fd8e7d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Zm94JTIwYW5kJTIwcmFiYml0fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="警察局场景">
+                </div>
+            </div>
+        </section>
+        
+        <section class="share-section">
+            <h2>分享这个页面</h2>
+            <p>与朋友一起了解尼克和朱迪的故事</p>
+            <div class="share-buttons">
+                <button class="share-btn" onclick="sharePage('wechat')">
+                    <i class="fab fa-weixin"></i> 微信
+                </button>
+                <button class="share-btn" onclick="sharePage('qq')">
+                    <i class="fab fa-qq"></i> QQ
+                </button>
+                <button class="share-btn" onclick="copyLink()">
+                    <i class="fas fa-link"></i> 复制链接
+                </button>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 疯狂动物城粉丝页面 | 本页面仅供爱好者交流，所有角色版权归迪士尼所有</p>
+        </footer>
+    </div>
+
+    <script>
+        // 分享功能
+        function sharePage(platform) {
+            const url = window.location.href;
+            const title = '尼克与朱迪 - 疯狂动物城最佳搭档';
+            
+            if (platform === 'wechat') {
+                alert('请使用微信扫描二维码分享此页面\n或复制链接：' + url);
+            } else if (platform === 'qq') {
+                window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(url) + '&title=' + encodeURIComponent(title));
+            }
+        }
+        
+        // 复制链接功能
+        function copyLink() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('链接已复制到剪贴板！');
+            }).catch(err => {
+                // 备用方案
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('链接已复制到剪贴板！');
+            });
+        }
+        
+        // 添加一些交互效果
+        document.querySelectorAll('.character-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
